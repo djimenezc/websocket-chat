@@ -15,5 +15,5 @@ module.exports = [
     name: 'Hilltop',
     image: 'chatrooms/hilltop.jpg'
   }
-]
+];
 

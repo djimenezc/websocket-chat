@@ -1,5 +1,5 @@
-const Chatroom = require('./Chatroom')
-const chatroomTemplates = require('../config/chatrooms')
+const Chatroom = require('./Chatroom');
+const chatroomTemplates = require('../config/chatrooms');
 
 module.exports = function () {
   // mapping of all available chatrooms
@@ -8,7 +8,7 @@ module.exports = function () {
       c.name,
       Chatroom(c)
     ])
-  )
+  );
 
   function removeClient(client) {
     chatrooms.forEach(c => c.removeUser(client))
@@ -27,4 +27,4 @@ module.exports = function () {
     getChatroomByName,
     serializeChatrooms
   }
-}
+};

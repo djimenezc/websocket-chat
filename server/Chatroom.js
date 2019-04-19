@@ -1,6 +1,6 @@
 module.exports = function ({ name, image }) {
-  const members = new Map()
-  let chatHistory = []
+  const members = new Map();
+  let chatHistory = [];
 
   function broadcastMessage(message) {
     members.forEach(m => m.emit('message', message))
@@ -38,4 +38,4 @@ module.exports = function ({ name, image }) {
     removeUser,
     serialize
   }
-}
+};

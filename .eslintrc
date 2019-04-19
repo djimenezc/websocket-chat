@@ -7,8 +7,7 @@
   ],
   "rules": {
     "linebreak-style": [
-      "error",
-      "windows"
+      "error"
     ],
     "comma-dangle": [
       "error",
