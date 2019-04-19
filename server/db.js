@@ -4,13 +4,17 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
 
+const chatrooms = require('../config/chatrooms');
+const users = require('../config/users');
+
 db.defaults({
-  posts: [],
-  user: {},
-  count: 0
-})
-  .write();
+  chatrooms,
+  users
+}).write();
+
+console.log('Loading database');
 
 module.exports = {
-  getListOfRoom: () => true
+  getChatroomList: () => db.get('chatrooms'),
+  getUserList: () => db.get('users')
 };

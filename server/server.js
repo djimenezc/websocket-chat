@@ -4,6 +4,7 @@ const io = require('socket.io')(server);
 const ClientManager = require('./ClientManager');
 const ChatroomManager = require('./ChatroomManager');
 const makeHandlers = require('./handlers');
+require('./logger');
 
 const clientManager = ClientManager();
 const chatroomManager = ChatroomManager();

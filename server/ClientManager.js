@@ -1,4 +1,4 @@
-const userTemplates = require('../config/users');
+const {getUserList} = require('./db.js');
 
 module.exports = function () {
   // mapping of all connected clients
@@ -22,7 +22,7 @@ module.exports = function () {
         .filter(c => c.user)
         .map(c => c.user.name)
     );
-    return userTemplates
+    return getUserList()
       .filter(u => !usersTaken.has(u.name))
   }
 
@@ -31,7 +31,7 @@ module.exports = function () {
   }
 
   function getUserByName(userName) {
-    return userTemplates.find(u => u.name === userName)
+    return getUserList().find(u => u.name === userName)
   }
 
   function getUserByClientId(clientId) {
