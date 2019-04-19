@@ -1,6 +1,8 @@
-module.exports = function ({ name, image }) {
+module.exports = function ({name, image, messages}, users) {
   const members = new Map();
-  let chatHistory = [];
+  let chatHistory = messages.map(chatEntry =>
+    Object.assign({}, chatEntry,
+      {user: users.filter(user => user.name === chatEntry.user)[0]}));
 
   function broadcastMessage(message) {
     members.forEach(m => m.emit('message', message))

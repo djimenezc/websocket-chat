@@ -1,3 +1,5 @@
+const db = require('./db');
+
 function makeHandleEvent(client, clientManager, chatroomManager) {
   function ensureExists(getter, rejectionMessage) {
     return new Promise(function (resolve, reject) {
@@ -27,18 +29,22 @@ function makeHandleEvent(client, clientManager, chatroomManager) {
       ensureValidChatroom(chatroomName),
       ensureUserSelected(client.id)
     ])
-      .then(([chatroom, user]) => Promise.resolve({ chatroom, user }))
+      .then(([chatroom, user]) => Promise.resolve({chatroom, user}))
   }
 
   function handleEvent(chatroomName, createEntry) {
     return ensureValidChatroomAndUserSelected(chatroomName)
-      .then(function ({ chatroom, user }) {
+      .then(function ({chatroom, user}) {
         // append event to chat history
-        const entry = { user, ...createEntry() };
+        const entry = {user, ...createEntry()};
         chatroom.addEntry(entry);
-
+        const chatAction = entry.event || entry.message;
+        const msg = `${user.valueOf().name} ${chatAction}`;
+        db.addChatMessage(
+          chatroom.valueOf().serialize().name, msg, entry.event, user.valueOf());
+        console.log(msg);
         // notify other clients in chatroom
-        chatroom.broadcastMessage({ chat: chatroomName, ...entry });
+        chatroom.broadcastMessage({chat: chatroomName, ...entry});
         return chatroom
       })
   }
@@ -60,7 +66,7 @@ module.exports = function (client, clientManager, chatroomManager) {
   }
 
   function handleJoin(chatroomName, callback) {
-    const createEntry = () => ({ event: `joined ${chatroomName}` });
+    const createEntry = () => ({event: `joined ${chatroomName}`});
 
     handleEvent(chatroomName, createEntry)
       .then(function (chatroom) {
@@ -74,7 +80,7 @@ module.exports = function (client, clientManager, chatroomManager) {
   }
 
   function handleLeave(chatroomName, callback) {
-    const createEntry = () => ({ event: `left ${chatroomName}` });
+    const createEntry = () => ({event: `left ${chatroomName}`});
 
     handleEvent(chatroomName, createEntry)
       .then(function (chatroom) {
@@ -86,8 +92,8 @@ module.exports = function (client, clientManager, chatroomManager) {
       .catch(callback)
   }
 
-  function handleMessage({ chatroomName, message } = {}, callback) {
-    const createEntry = () => ({ message });
+  function handleMessage({chatroomName, message} = {}, callback) {
+    const createEntry = () => ({message});
 
     handleEvent(chatroomName, createEntry)
       .then(() => callback(null))

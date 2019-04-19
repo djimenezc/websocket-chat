@@ -1,12 +1,12 @@
 const Chatroom = require('./Chatroom');
-const {getChatroomList} = require('./db.js');
+const {getChatroomList, getUserList} = require('./db.js');
 
 module.exports = function () {
   // mapping of all available chatrooms
   const chatrooms = new Map(
     getChatroomList().map(c => [
       c.name,
-      Chatroom(c)
+      Chatroom(c, getUserList().value())
     ])
   );
 
