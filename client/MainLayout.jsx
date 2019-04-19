@@ -13,7 +13,7 @@ const ContentWrapper = styled.div`
   width: 100%;
   overflow: auto;
   z-index: 1;
-`
+`;
 const Center = styled.div`
   position: relative;
   max-width: 1000px;
@@ -21,7 +21,7 @@ const Center = styled.div`
   padding: 40px 0;
   height: 100%;
   box-sizing: border-box;
-`
+`;
 
 const Content = styled.div`
   position: relative;
@@ -30,14 +30,14 @@ const Content = styled.div`
   justify-content: space-between;
   margin: 0 20px;
   height: 100%;
-`
+`;
 
 const BackgroundImage = styled.div`
   background: url(${props => props.src}) no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   overflow: hidden;
-`
+`;
 
 const AvatarWrapper = styled.div`
 cursor: pointer;
@@ -50,21 +50,21 @@ cursor: pointer;
   img {
     box-shadow: rgba(255, 255, 255, 0.2) 0 0 10px 2px;
   }
-`
+`;
 
 const Relative = styled.div`
   position: relative;
-`
+`;
 
 const Sticky = styled.div`
   position: fixed;
-`
+`;
 const UserName = styled.p`
   font-size: 24px;
   height: 27px;
   text-align: center;
   color: #fafafa;
-`
+`;
 
 function renderAvatar(user) {
   const props = user
@@ -77,7 +77,7 @@ function renderAvatar(user) {
       >
         {'perm_identity'}
       </FontIcon>
-    }
+    };
 
   return <Avatar size={160} {...props} />
 }
@@ -86,7 +86,7 @@ function fullName(user) {
   return user ? `${user.name} ${user.lastName}` : 'Who are you?'
 }
 
-export default ({ children, user }) => (
+const MainLayout = ({ children, user }) => (
   <FullScreen>
     <ContentWrapper>
       <Center>
@@ -95,13 +95,13 @@ export default ({ children, user }) => (
             <Sticky>
               <AvatarWrapper>
                 <Link to="/user">
-                  { renderAvatar(user) }
+                  {renderAvatar(user)}
                 </Link>
-                <UserName> { fullName(user) } </UserName>
+                <UserName> {fullName(user)} </UserName>
               </AvatarWrapper>
             </Sticky>
           </Relative>
-          { children }
+          {children}
         </Content>
       </Center>
     </ContentWrapper>
@@ -113,4 +113,6 @@ export default ({ children, user }) => (
       />
     </FullScreen>
   </FullScreen>
-)
+);
+
+export default MainLayout;
