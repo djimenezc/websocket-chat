@@ -22,7 +22,7 @@ module.exports = function () {
         .filter(c => c.user)
         .map(c => c.user.name)
     );
-    return getUserList()
+    return getUserList().value()
       .filter(u => !usersTaken.has(u.name))
   }
 
@@ -31,7 +31,7 @@ module.exports = function () {
   }
 
   function getUserByName(userName) {
-    return getUserList().find(u => u.name === userName)
+    return getUserList().find(u => u.name === userName).value()
   }
 
   function getUserByClientId(clientId) {
