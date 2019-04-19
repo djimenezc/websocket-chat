@@ -43,7 +43,8 @@
     "socket.io-client": "^2.2.0",
     "styled-components": "^3.1.6",
     "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.11.1",
+    "shortid": "^2.2.14"
   },
   "devDependencies": {
     "eslint": "^4.17.0",

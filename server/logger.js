@@ -1,6 +1,7 @@
 // require('log-timestamp');
 
 const clc = require('cli-color');
+const db = require('./db.js');
 
 const mapping = {
   log: clc.blue,
@@ -11,11 +12,16 @@ const mapping = {
 ['log', 'warn', 'error'].forEach(function (method) {
   const oldMethod = console[method].bind(console);
   console[method] = function (...args) {
+    const message = [mapping[method](new Date().toISOString())]
+      .concat(args);
+
     oldMethod.apply(
       console,
-      [mapping[method](new Date().toISOString())]
-        .concat(args)
+      message
     );
+    if (method === 'log') {
+      db.log(message.join(' '));
+    }
   };
 });
 
