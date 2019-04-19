@@ -1,0 +1,24 @@
+{
+  "name": "websocket-chat",
+  "version": "1.0.0",
+  "description": "websocket chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djimenezc/websocket-chat.git"
+  },
+  "keywords": [
+    "websocket",
+    "react",
+    "chat"
+  ],
+  "author": "djimenezc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djimenezc/websocket-chat/issues"
+  },
+  "homepage": "https://github.com/djimenezc/websocket-chat#readme"
+}
