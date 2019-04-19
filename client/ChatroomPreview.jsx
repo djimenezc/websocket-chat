@@ -13,7 +13,7 @@ const getCardTitleStyle = () => ({
   alignItems: 'center'
 });
 
-export default ({ chatroom, onEnter }) => (
+const ChatroomPreview = ({ chatroom, onEnter }) => (
   <Paper
     style={{ maxWidth: 600, marginBottom: 40 }}
     zDepth={5}
@@ -33,4 +33,6 @@ export default ({ chatroom, onEnter }) => (
       </Card>
     </Wrapper>
   </Paper>
-)
+);
+
+export default ChatroomPreview;

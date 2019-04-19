@@ -176,10 +176,10 @@ export default class Chatroom extends React.Component {
                   this.state.chatHistory.map(
                     ({ user, message, event }, i) => [
                       <NoDots
-                        key={`${i}-noDots`}
+                        key={`${i.toString()}-noDots`}
                       >
                         <ListItem
-                          key={i}
+                          key={`${i.toString()}-ListItem`}
                           style={{ color: '#fafafa' }}
                           leftAvatar={<Avatar src={user.image} />}
                           primaryText={`${user.name} ${event || ''}`}
@@ -191,7 +191,10 @@ export default class Chatroom extends React.Component {
                           }
                         />
                       </NoDots>,
-                      <Divider inset />
+                      <Divider
+                        key={`${i.toString()}-Divider`}
+                        inset
+                      />
                     ]
                   )
                 }

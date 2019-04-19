@@ -2,7 +2,7 @@ import React from 'react';
 
 import ChatroomPreview from './ChatroomPreview'
 
-export default ({
+const Home = ({
   chatrooms,
   onEnterChatroom
 }) => (
@@ -17,4 +17,6 @@ export default ({
       ))
     }
   </div>
-)
+);
+
+export default Home;
